@@ -11,13 +11,13 @@
         <span class="icon-bar"></span>
         </button>
         <!-- Logo website -->
-        <a class="navbar-brand" href="#">Swap Product</a>
+        <a class="navbar-brand" href="<?php echo base_url('index.php/cproduct') ?>">Swap Product</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <!--Link to home page  -->
-            <li ><a href="#">Home</a></li>
+            <li ><a href="<?php echo base_url('index.php/cproduct') ?>">Home</a></li>
         </ul>
         <!-- BEGIN Form search of web -->
         <form class="navbar-form navbar-left" role="search">

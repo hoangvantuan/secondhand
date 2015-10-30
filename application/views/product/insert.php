@@ -7,7 +7,8 @@
             <h3 class="panel-title">Add Product</h3>
         </div>
         <div class="panel-body">
-            <form action="" method="POST" role="form" enctype="multipart/form-data">
+            <h4><?php echo $data['error'] ?></h4>
+            <form action="insertProcess" method="POST" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <!-- Upload image product -->
                     <label for="uploadImage">Image</label>
@@ -16,14 +17,14 @@
                 <div class="form-group">
                     <!-- Enter Product name -->
                     <label for="productName">Product name:</label>
-                    <input type="text" name="productName" value="" placeholder="" required="required" class="form-control">
+                    <input type="text" name="name" value="" placeholder="" required="required" class="form-control">
                 </div>
                 <div class="form-group">
                     <!-- Select category of product -->
                     <label for="category">Category:</label><br>
                     <select name="category">
                         <?php foreach($data as $value): ?>
-                        <option value="<?php echo $value->id ?>" selected><?php echo $value->name ?></option>
+                        <option value="<?php echo $value->id ?>"><?php echo $value->name ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>

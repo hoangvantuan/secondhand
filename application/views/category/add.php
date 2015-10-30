@@ -17,12 +17,12 @@
 		<![endif]-->
 	</head>
 	<body>
-<form action="insert" method="POST" role="form">
+<form action="http://secondhand.com/index.php/category/insert" method="POST" role="form">
 	<legend>Add category</legend>
 
 	<div class="form-group">
 		<label for="name">Name</label>
-		<input type="text" class="form-control" name='name' id="name" placeholder="Input field">
+		<input type="text" class="form-control" name='name' id="name" placeholder="Input field" autofocus>
 	</div>
 
 	

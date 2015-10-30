@@ -17,13 +17,13 @@
 		<![endif]-->
 	</head>
 	<body>
-		<form action="edit" method="POST" role="form">
-			<legend>Form title</legend>
+		<form action="http://secondhand.com/index.php/category/edit" method="POST" role="form">
+			<legend>Edit category</legend>
 		
 			<div class="form-group">
 				<label for="name">Category</label>
-				<input type="text" class="form-control" id="category" name='category'  placeholder="Input field">
-				<input type="text" class="form-control" id="id" name='id' >
+				<input type="text" class="form-control" id="name" name='name'  placeholder="Input field" autofocus>
+				<input type="hidden" class="form-control" id="id" name='id' value = "<?php echo $data['id'] ?>">
 			</div>
 		
 			

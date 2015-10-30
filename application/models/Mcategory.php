@@ -24,7 +24,7 @@ class Mcategory extends CI_Model
 
 	function update($id, $category = array()){
 		$this->db->where('id', $id);
-		$this->db->update('category', $$category);
+		$this->db->update('category', $category);
 	}
 }
 

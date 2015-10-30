@@ -31,14 +31,14 @@ class Category extends CI_Controller
 
 
 	function update($id){
-		$data['data'] = $id;
-		// var_dump($data);
-		$this->load->view('category/edit',$data);	
+		$data['data'] = array('id'=>$id);
+		$this->load->view('category/update',$data);	
 	}
 
 	function edit(){
 		$category = array('name'=>$this->input->post('name'));
-		$this->mcategory->update($$this->input->post('id'), $category);
+		$this->mcategory->update($this->input->post('id'), $category);
+		redirect('category','refresh');
 
 	}
 }

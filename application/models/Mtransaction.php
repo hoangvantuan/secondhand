@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Transaction extends CI_Model {
+class Mtransaction extends CI_Model {
 
 	function findAll(){
 		return $this->db->get('sh_transaction')->result();

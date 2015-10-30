@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Model {
+class MUser extends CI_Model {
 
 	function findAll(){
 		return $this->db->get('sh_user')->result();

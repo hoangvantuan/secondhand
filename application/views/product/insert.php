@@ -8,6 +8,7 @@
         </div>
         <div class="panel-body">
             <h4><?php echo $data['error'] ?></h4>
+            <?php unset($data['error']) ?>
             <form action="insertProcess" method="POST" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <!-- Upload image product -->

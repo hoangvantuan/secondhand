@@ -7,7 +7,7 @@
                 	<h1 class="page-header">Product List</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <i class="fa fa-dashboard"></i>  <a href="#">Bảng điều khiển</a>
+                            <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url('index.php/cproduct') ?>">Home</a>
                         </li>
                         <li class="active">
                             <i class="fa fa-list-ol"></i> Products
@@ -17,7 +17,7 @@
                 </div>
 
 			<div class="row">
-                <div class="col-lg-12"><label><i class="fa fa-upload"></i> <a href="cproduct/insert">Thêm sản phẩm</a></label></div>
+                <div class="col-lg-12"><label><i class="fa fa-upload"></i> <a href="cproduct/insert">Add product</a></label></div>
                 <div class="col-lg-12">
                     <h2>Producs Table</h2>
                     <div class="table-responsive">

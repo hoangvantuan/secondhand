@@ -7,11 +7,9 @@
     <div class="panel-body left_side_bar">
         <!-- Content Side bar -->
         <ul>
-            <li><a href="#"></a><i class="glyphicon glyphicon-plus">&nbsp;</i>category 1</li>
-            <li><a href="#"></a><i class="glyphicon glyphicon-plus">&nbsp;</i>category 1</li>
-            <li><a href="#"></a><i class="glyphicon glyphicon-plus">&nbsp;</i>category 1</li>
-            <li><a href="#"></a><i class="glyphicon glyphicon-plus">&nbsp;</i>category 1</li>
-            <li><a href="#"></a><i class="glyphicon glyphicon-plus">&nbsp;</i>category 1</li>
+            <?php foreach($category as $value): ?>
+            <li><i class="glyphicon glyphicon-plus">&nbsp;</i><a href="<?php echo base_url('index.php/chome/category/'.$value->id) ?>"><?php echo $value->name ?></a></li>
+            <?php endforeach ?>
         </ul>
     </div>
 </div>

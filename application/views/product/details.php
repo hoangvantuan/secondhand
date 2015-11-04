@@ -1,11 +1,10 @@
-<!-- BEIGIN: INCLUDE header -->
-<?php require_once('header.php') ?>
-<?php require_once('navigation.php') ?>
-<!-- END: include Header -->
+
 <!-- BEGIN CONTENT -->
 <div class="container">
     <!-- Info of product and user -->
+
     <div class="col-md-6">
+         <?php echo anchor('cproduct', 'Back'); ?>
         <!-- User info -->
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -14,14 +13,13 @@
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="#" alt="avatar" class="img-responsive img-circle">
+                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive img-circle">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">
-                    <p><strong>Account: </strong>tuankatty</p>
-                    <p><strong>Address: </strong>Address here</p>
-                    <p><strong>Phone number: </strong>Phone number here</p>
-                    <p><strong>Email: </strong>hoangtuanbka93@gmail.com</p>
+                    <p><strong>Account: </strong></a><?php echo $user->username ?></p>
+                    <p><strong>Address: </strong><?php echo $user->address ?></p>
+                    <p><strong>Phone number: </strong><?php echo $user->phonenumber ?></p>
                 </div>
             </div>
         </div>
@@ -34,17 +32,18 @@
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="#" alt="product iname" class="img-responsive img-circle">
+                    <img src="<?php echo base_url($product->image) ?>" alt="product iname" class="img-responsive img-circle">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">
-                    <p><strong>Name product: </strong>Name product</p>
-                    <p><strong>Category: </strong>Category</p>
-                    <p><strong>Number: </strong>number here</p>
-                </div>
-                <p><strong>More about: </strong></p>
-                <textarea  id="moreabout" cols="50" rows="10" disabled="true"></textarea>
+                    <p><strong>Name product: </strong><?php echo $product->name?></p>
+                    <p><strong>Category: </strong><?php echo $category_name ?></p>
+                    <p><strong>Status: </strong><?php echo $product->status ?></p>
+                    <p><strong>More about: </strong></p>
+                    <textarea  id="moreabout" cols="50" rows="10" disabled="true"><?php echo $product->description ?></textarea>
             </div>
+                </div>
+               
         </div>
         <!-- End product info -->
     </div>
@@ -95,6 +94,3 @@
     <!-- End list product -->
 </div>
 <!-- END CONTENT -->
-<!-- BEGIN: FOOTER -->
-<?php require_once('footer.php') ?>
-<!-- END: FOOTER

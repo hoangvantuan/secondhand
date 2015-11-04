@@ -1,6 +1,8 @@
 
 <!-- BEGIN CONTENT -->
 <div class="container">
+    <?php echo anchor('cproduct', 'Back'); ?>
+    <hr>
     <div class="panel panel-info">
         <div class="panel-heading">
             <!-- title -->
@@ -18,7 +20,7 @@
                 <div class="form-group">
                     <!-- Enter Product name -->
                     <label for="productName">Product name:</label>
-                    <input type="text" name="name" value="" placeholder="" required="required" class="form-control">
+                    <input type="text" name="name" value="" minlength="6" maxlength="25" placeholder="" required="required" class="form-control">
                 </div>
                 <div class="form-group">
                     <!-- Select category of product -->
@@ -32,7 +34,7 @@
                 <div class="form-group">
                     <!-- Price of product -->
                     <label for="price">About price:</label><br>
-                    <input type="number" name="price" required value="" placeholder="">
+                    <input type="number" min='0', name="price" required value="" placeholder="">
                 </div>
                 <div class="form-group">
                     <!-- Description of product -->

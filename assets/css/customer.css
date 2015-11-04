@@ -7,3 +7,7 @@ div.left_side_bar ul{
 div.left_side_bar ul li{
     padding-bottom: 5px;
 }
+
+.img-product{
+	height: 170px!important;
+}

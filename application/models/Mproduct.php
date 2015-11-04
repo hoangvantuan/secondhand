@@ -7,6 +7,14 @@ class Mproduct extends CI_Model {
 	function findAll(){
 		return $this->db->get('sh_product')->result();
 	}
+	function findAllById($user_id){
+		$this->db->where('user_id', $user_id);
+		return $this->db->get('sh_product')->result();
+	}
+	function findAllByCategory($category){
+		$this->db->where('category_id', $category);
+		return $this->db->get('sh_product')->result();
+	}
 	function find($id){
 		$this->db->where('id', $id);
 		return $this->db->get('sh_product')->row();

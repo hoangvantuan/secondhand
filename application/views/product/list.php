@@ -38,7 +38,7 @@
                             <tbody>
      							<?php  foreach($product as $value): ?>
      							<tr valign="middle">
-     								<td><?php echo anchor('cproduct/details/'.$value->id, $value->name) ?></td>
+     								<td><?php echo anchor('cproduct/details?id='.$value->id, $value->name) ?></td>
      								<td><img src="<?php echo base_url($value->image) ?>" width="50" height="50" ></td>
      								<td><?php echo $value->category->name ?></td>
      								<td><?php echo number_format($value->price,0,',','.').'VND'; ?></td>

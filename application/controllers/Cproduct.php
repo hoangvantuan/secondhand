@@ -23,6 +23,10 @@ class Cproduct extends CI_Controller
 		$callFunction->excute();
 	}
 
+	public function details(){
+		$callFunction = new DetailsMng($this);
+		$callFunction->excute();
+	}
 	public function insert(){
 		$callFunction = new InsertMng($this);
 		$callFunction->excute();
@@ -320,6 +324,34 @@ class InsertMng implements CallFunction
 		$user_id = $this->that->muser->findId($this->that->session->userdata('user'));
 		$product = array('user_id'=>$user_id,'status'=>'Ready','name'=>$this->that->input->post('name'),'price'=>$this->that->input->post('price'),'category_id'=>$this->that->input->post('category'),'description'=>$this->that->input->post('description'),'image'=>'assets/image/common/imgnotfound.jpg');
 		return $product;
+	}
+}
+/**
+* 
+*/
+class DetailsMng 
+{
+	private $that;	
+	function __construct($that)
+	{
+		# code...
+		$this->that = $that;
+	}
+
+	public function excute(){
+
+			$data = $this->getDataProduct();
+			$this->that->load->view('product/details',$data);
+	}
+
+	public function getDataProduct(){
+		$data['product'] = $this->that->mproduct->find($this->that->input->get('id'));
+		$data['user'] = $this->that->muser->find($data['product']->user_id);	
+		$category = $this->that->mcategory->find($data['product']->category_id);	
+		$data['product']->category_name = $category->name;
+		$data['category_name'] = $category->name;
+
+		return $data;
 	}
 }
 

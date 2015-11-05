@@ -14,7 +14,7 @@
          
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <a  href="<?php echo base_url('index.php/cproduct/details/'.$value->id) ?>"><img src="<?php echo base_url($value->image) ?>" alt="product" class="img-responsive img-product"</a>                        <div class="caption">
+                        <a  href="<?php echo base_url('index.php/cproduct/details?id='.$value->id) ?>"><img src="<?php echo base_url($value->image) ?>" alt="product" class="img-responsive img-product"</a>                        <div class="caption">
                             <p><a href="<?php echo base_url('index.php/cproduct/details/'.$value->id) ?>"><?php echo $value->name ?></a></p>
                             <p><?php echo $value->description ?></p>
                         </div>

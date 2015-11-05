@@ -1,4 +1,7 @@
-
+<?php 
+    $this->load->view('layout/header');
+    $this->load->view('layout/navigation');
+ ?>
 <!-- BEGIN CONTENT -->
 <div class="container">
     <!-- Info of product and user -->
@@ -94,3 +97,4 @@
     <!-- End list product -->
 </div>
 <!-- END CONTENT -->
+<?php $this->load->view('layout/footer'); ?>

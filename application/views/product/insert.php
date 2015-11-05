@@ -1,4 +1,5 @@
-
+<?php $this->load->view('layout/header'); ?>
+<?php $this->load->view('layout/navigation'); ?>
 <!-- BEGIN CONTENT -->
 <div class="container">
     <?php echo anchor('cproduct', 'Back'); ?>
@@ -9,9 +10,9 @@
             <h3 class="panel-title">Add Product</h3>
         </div>
         <div class="panel-body">
-            <h4><?php echo $data['error'] ?></h4>
-            <?php unset($data['error']) ?>
-            <form action="insertProcess" method="POST" role="form" enctype="multipart/form-data">
+            <h4><?php echo $error ?></h4>
+            <?php unset($error) ?>
+            <form action="insert" method="POST" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <!-- Upload image product -->
                     <label for="uploadImage">Image</label>
@@ -26,7 +27,7 @@
                     <!-- Select category of product -->
                     <label for="category">Category:</label><br>
                     <select name="category">
-                        <?php foreach($data as $value): ?>
+                        <?php foreach($category as $value): ?>
                         <option value="<?php echo $value->id ?>"><?php echo $value->name ?></option>
                         <?php endforeach ?>
                     </select>
@@ -41,10 +42,10 @@
                     <label for="description">More about product:</label><br>
                     <textarea name="description" cols="70" rows="10"></textarea>
                 </div>
-                <button type="reset" class="btn btn-warning pull-right">Reset All</button>
                 <button type="submit" name="insert" class="btn btn-primary pull-right">Add product</button>
             </form>
         </div>
     </div>
 </div>
 <!-- END CONTENT -->
+<?php $this->load->view('layout/footer'); ?>

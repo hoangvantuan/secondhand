@@ -1,3 +1,5 @@
+<?php $this->load->view('layout/header'); ?>
+<?php $this->load->view('layout/navigation'); ?>
 <div class="container">
     <div id="wrapper">
     <div id="page-wrapper">
@@ -42,8 +44,8 @@
      								<td><?php echo number_format($value->price,0,',','.').'VND'; ?></td>
      								<td><?php echo $value->description ?></td>
      								<td><?php echo $value->status ?></td>
-                                    <td><?php echo anchor('cproduct/edit/'.$value->id, 'Edit'); ?></td>
-?     								<td><?php echo  anchor('cproduct/delete/'.$value->id, 'Delete', array('onClick'=>"return confirm('Are you sure?')")); ?></td>
+                                    <td><?php echo anchor('cproduct/edit?id='.$value->id, 'Edit'); ?></td>
+?     								<td><?php echo  anchor('cproduct/delete?id='.$value->id, 'Delete', array('onClick'=>"return confirm('Are you sure?')")); ?></td>
      							
                                 </tr>
      							<?php endforeach ?>
@@ -59,3 +61,4 @@
 	</div>
     </div>
 </div>
+<?php $this->load->view('layout/footer'); ?>

@@ -1,3 +1,7 @@
+<?php 
+        $this->load->view('layout/header');
+        $this->load->view('layout/navigation');
+?>
 
 <!-- BEGIN CONTENT -->
 <div class="container">
@@ -26,7 +30,7 @@
                     <label for="category">Category:</label><br>
                     <select name="category">
                         <?php foreach($category as $value): ?>
-                        <option value="<?php echo $value->id?> <?php echo $value->id == $product->category_id ? 'selected' : '' ?>"><?php echo $value->name ?></option>
+                        <option value="<?php echo $value->id?>" <?php echo $value->id == $product->category_id ? 'selected' : '' ?>><?php echo $value->name ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -46,3 +50,4 @@
     </div>
 </div>
 <!-- END CONTENT -->
+<?php $this->load->view('layout/footer'); ?>

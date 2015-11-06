@@ -1,4 +1,4 @@
-<?php 
+<?php
         $this->load->view('layout/header');
         $this->load->view('layout/navigation');
 ?>
@@ -16,7 +16,7 @@
             <form action="<?php base_url('index.php/cproduct/edit') ?>" method="POST" role="form" enctype="multipart/form-data">
                 <div class="form-group">
                     <!-- Upload image product -->
-                    <img src="<?php echo base_url($product->image) ?>" class="img-responsive img-circle">
+                    <img src="<?php echo base_url($product->image) ?>" class="img-responsive img-product">
                     <label for="uploadImage">Image</label>
                     <input type="file" name="uploadImage" value="uploadImage" class="form-control" placeholder="">
                 </div>

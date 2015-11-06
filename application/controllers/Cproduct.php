@@ -51,7 +51,7 @@ class IndexMng implements  CallFunction{
 	}
 	public function excute(){
 
-			// Check is user ? 
+			// Check is user ?
 			if(!$this->that->session->userdata('user'))
 			redirect(base_url());
 
@@ -66,7 +66,7 @@ class IndexMng implements  CallFunction{
 				}
 			}
 
-			// Load view 
+			// Load view
 			$this->that->load->view('product/list', $data);
 	}
 }
@@ -90,10 +90,10 @@ class EditMng implements CallFunction{
 			// Submit was click
 			if($this->that->input->post('name')){
 
-			
+
 			// Init product to update
 			$product = array('name'=>$this->that->input->post('name'),'price'=>$this->that->input->post('price'),'category_id'=>$this->that->input->post('category'),'description'=>$this->that->input->post('description'));
-			
+
 
 			// Instant process image
 			$imageProcess = new ImageProcess($this->that);
@@ -104,32 +104,30 @@ class EditMng implements CallFunction{
 			$imageProcess->setConfig($myConfig->getConfigUpload());
 
 			// If upload error
-			if (!$imageProcess->upload->upload()){
+			if (!$imageProcess->upload->upload(new uploadUserLib())){
 				$error = $imageProcess->upload->getError();
-				echo $error;
 			}
 			else{
 				// Get image that uploaded
 			    $image_data = $imageProcess->upload->getImage();
 
-			    
+
 			    // Resize image
 		 		$imageProcess->setConfig($myConfig->getConfigResize());
-	      		$imageProcess->resize->resize();
+	      		$imageProcess->resize->resize(new resizeUserLib());
 
 	      		// Rename image
-	      		$rename = new Rename($image_data, $old_path_name);
+	      		$rename = new Rename($image_data, $old_path_name,new getNameByTime());
 	      		$rename->excute();
-	        
 	        	// Add link image to upload
-	        	$product['image'] = 'assets/uploads/'.$rename->new_name;
+	        	$product['image'] = 'assets/uploads/'.$rename->new_name->new_name;
 
 		}
 			// Upload
 			$this->that->mproduct->update($this->that->input->get('id'),$product);
 			redirect('cproduct');
 		}
-		else	
+		else
 			$this->that->load->view('product/edit', $data, FALSE);
 		}
 }
@@ -160,6 +158,29 @@ class ImageProcess
 /**
 *	Upload image
 */
+interface Upload {
+    public function upload($imageProcess);
+}
+interface Resize {
+    public function resize($imageProcess);
+}
+
+class uploadUserLib implements Upload{
+    public function upload($imageProcess){
+        $imageProcess->that->upload->initialize($imageProcess->getConfig());
+        $excute = $imageProcess->that->upload->do_upload('uploadImage');
+        // var_dump($imageProcess->that->upload->data());
+
+        return $excute;
+    }
+}
+class resizeUserLib implements Resize{
+    public function resize($imageProcess){
+        $imageProcess->that->load->library("image_lib",$imageProcess->getConfig());
+        $imageProcess->that->image_lib->resize();
+    }
+}
+
 class UploadProcess
 {
 	private $imageProcess;
@@ -168,10 +189,8 @@ class UploadProcess
 		$this->imageProcess = $imageProcess;
 	}
 
-	public function upload(){
-		$this->imageProcess->that->upload->initialize($this->imageProcess->getConfig());
-		return $this->imageProcess->that->upload->do_upload('uploadImage');
-		
+	public function upload($upload){
+        return $upload->upload($this->imageProcess);
 	}
 	public function getError(){
 		return $this->imageProcess->that->upload->display_errors();
@@ -191,10 +210,9 @@ class ResizeImage
 		$this->imageProcess = $imageProcess;
 	}
 
-	public function resize(){
-		
-        $this->imageProcess->that->load->library("image_lib",$this->getConfig());
-        $this->imageProcess->that->image_lib->resize();
+	public function resize($resize){
+        $resize->resize($this->imageProcess);
+
 	}
 	public function getConfig(){
 		$config = $this->imageProcess->getConfig();
@@ -204,31 +222,40 @@ class ResizeImage
 
 	}
 }
+
+interface MyName{
+    public  function getNewName($ext);
+}
 /**
 *	Rename file
 */
+class getNameByTime implements MyName{
+     // Implements method getNewName
+    public $new_name;
+    public function getNewName($ext){
+        $this->new_name = time().$ext;
+        return $this->new_name;
+    }
+}
 class Rename
 {
 	public $image_data;
 	public $path;
 	public $new_name;
-	function Rename($image_data,$path){
+	function Rename($image_data,$path,$getNewName){
 		$this->image_data = $image_data;
 		$this->path = $path;
-		$this->new_name= $this->getNewName($image_data);
+		$this->new_name= $getNewName;
 	}
-   
+
 	public function oldPathName(){
 		return $this->path.$this->image_data['orig_name'];
 	}
 
 	public function newPathName(){
-		
-		  return  $this->path.$this->new_name;
+		  return  $this->path.$this->new_name->getNewName($this->image_data['file_ext']);
 	}
-	public function getNewName($image_data){
-		return time().$image_data['file_ext'];
-	}
+
 	public function excute(){
 		rename($this->oldPathName(), $this->newPathName());
 	}
@@ -287,7 +314,7 @@ class InsertMng implements CallFunction
 			$data['product'] = $this->getDataProduct();
 
 			$imageProcess->setConfig($myConfig->getConfigUpload());
-			if(!$imageProcess->upload->upload()){
+			if(!$imageProcess->upload->upload(new uploadUserLib())){
 				$data['error'] = $imageProcess->getError();
 			}
 			else{
@@ -296,19 +323,19 @@ class InsertMng implements CallFunction
 
 			    // Resize image
 		 		$imageProcess->setConfig($myConfig->getConfigResize());
-	      		$imageProcess->resize->resize();
+	      		$imageProcess->resize->resize(new resizeUserLib());
 
 	      		// Rename image
-	      		$rename = new Rename($image_data, $old_path_name);
+	      		$rename = new Rename($image_data, $old_path_name,new getNameByTime());
 	      		$rename->excute();
-	        
 	        	// Add link image to upload
-	        	$data['product']['image'] = 'assets/uploads/'.$rename->new_name;
+	        	$data['product']['image'] = 'assets/uploads/'.$rename->new_name->new_name;
+                echo $data['product']['image'];
 			}
 
 			$this->that->mproduct->insert($data['product']);
 			redirect('cproduct');
-		
+
 		}
 
 		// Submit wasn't click
@@ -327,11 +354,11 @@ class InsertMng implements CallFunction
 	}
 }
 /**
-* 
+*
 */
-class DetailsMng 
+class DetailsMng
 {
-	private $that;	
+	private $that;
 	function __construct($that)
 	{
 		# code...
@@ -346,8 +373,8 @@ class DetailsMng
 
 	public function getDataProduct(){
 		$data['product'] = $this->that->mproduct->find($this->that->input->get('id'));
-		$data['user'] = $this->that->muser->find($data['product']->user_id);	
-		$category = $this->that->mcategory->find($data['product']->category_id);	
+		$data['user'] = $this->that->muser->find($data['product']->user_id);
+		$category = $this->that->mcategory->find($data['product']->category_id);
 		$data['product']->category_name = $category->name;
 		$data['category_name'] = $category->name;
 
@@ -356,7 +383,7 @@ class DetailsMng
 }
 
 /**
-* 
+*
 */
 class MyConfig
 {
@@ -376,7 +403,6 @@ class MyConfig
 	                        "maintain_ration" => true,
 	                        "width" => '440',
 	                        "height" => "440");
-		 	var_dump($this->configUpload);
 	}
 	function getConfigUpload(){
 		return $this->configUpload;
@@ -394,7 +420,7 @@ class MyConfig
 }
 
 /**
-* 
+*
 */
 /* End of file product.php */
 /* Location: ./application/controllers/product.php */

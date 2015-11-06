@@ -11,7 +11,7 @@
         <div class="col-md-8">
             <!-- BEGIN info of 1 product -->
             <?php foreach($product as $value):?>
-         
+
                 <div class="col-md-3">
                     <div class="thumbnail">
                         <a  href="<?php echo base_url('index.php/cproduct/details?id='.$value->id) ?>"><img src="<?php echo base_url($value->image) ?>" alt="product" class="img-responsive img-product"</a>                        <div class="caption">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-        
+
         <?php endforeach ?>
             <!-- END: info of 1 product -->
         </div>

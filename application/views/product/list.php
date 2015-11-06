@@ -46,10 +46,10 @@
      								<td><?php echo $value->status ?></td>
                                     <td><?php echo anchor('cproduct/edit?id='.$value->id, 'Edit'); ?></td>
 ?     								<td><?php echo  anchor('cproduct/delete?id='.$value->id, 'Delete', array('onClick'=>"return confirm('Are you sure?')")); ?></td>
-     							
+
                                 </tr>
      							<?php endforeach ?>
-   							
+
  							</tbody>
 						</table>
                      </div>

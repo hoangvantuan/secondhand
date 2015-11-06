@@ -1,4 +1,4 @@
-<?php 
+<?php
     $this->load->view('layout/header');
     $this->load->view('layout/navigation');
  ?>
@@ -16,7 +16,7 @@
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive img-circle">
+                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">
@@ -35,7 +35,7 @@
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="<?php echo base_url($product->image) ?>" alt="product iname" class="img-responsive img-circle">
+                    <img src="<?php echo base_url($product->image) ?>" alt="product iname" class="img-responsive img-product">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">
@@ -43,10 +43,10 @@
                     <p><strong>Category: </strong><?php echo $category_name ?></p>
                     <p><strong>Status: </strong><?php echo $product->status ?></p>
                     <p><strong>More about: </strong></p>
-                    <textarea  id="moreabout" cols="50" rows="10" disabled="true"><?php echo $product->description ?></textarea>
+                    <textarea  id="moreabout" cols="40" rows="10" disabled="true"><?php echo $product->description ?></textarea>
             </div>
                 </div>
-               
+
         </div>
         <!-- End product info -->
     </div>

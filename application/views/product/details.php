@@ -16,7 +16,7 @@
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive">
+                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive" width="100">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">

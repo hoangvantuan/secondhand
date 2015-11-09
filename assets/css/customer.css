@@ -1,0 +1,13 @@
+/*DOCUMENT CSS*/
+
+/*LEFT SIDE BAR*/
+div.left_side_bar ul{
+    list-style: none;
+}
+div.left_side_bar ul li{
+    padding-bottom: 5px;
+}
+
+.img-product{
+	height: 170px!important;
+}

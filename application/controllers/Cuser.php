@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cuser extends CI_Controller
 {
-    
+
     public function index()
     {
         if ($this->session->userdata('user')) {
-            
+
             $user_id = $this->muser->findId($this->session->userdata('user'));
             $data['user'] = $this->muser->find($user_id);
             $this->load->view('layout/header');
@@ -29,7 +29,7 @@ class Cuser extends CI_Controller
         if ($this->input->post('username')) {
             $username = $this->input->post('username');
             $password = $this->input->post('pass');
-            
+
             if ($this->muser->checkLogin($username, $password)) {
                 $user = array(
                     'user' => $username
@@ -45,8 +45,8 @@ class Cuser extends CI_Controller
                 $this->load->view('user/login', $data);
                 $this->load->view('layout/footer');
             }
-            
-            
+
+
         } else {
             $this->load->view('layout/header');
             $this->load->view('layout/navigation');

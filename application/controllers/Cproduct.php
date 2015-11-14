@@ -229,7 +229,38 @@ class DetailsMng
         $data['product']->category_name = $category->name;
         $data['category_name'] = $category->name;
 
-        return $data;
+        $currentUser = $this->that->session->userdata('user');
+        $currentUserId = $this->that->session->userdata('id');
+        $data['isMe'] = $data['user']->username == $currentUser ? true : false;
+
+        $data['all'] = null;
+        $data['suggess'] = null;
+        /*
+         *Neu session hien tai la minh
+         *Lay du lieu san pham tren toan sever va san pham goi y
+         *
+         *Neu session khong phai la minh
+         *Lay tat ca du lieu cua minh vaf san pham goi y
+        */
+        if ($data['isMe']) {
+
+            // find all product in database
+            $data['all'] = $this->that->mproduct->findAllNotMe($currentUserId);
+        }
+        else {
+
+            //Find product
+            $data['all'] = $this->that->mproduct->findAllById($currentUserId);
+        }
+        foreach ($data['all'] as $product) {
+            $delta = $data['product']->price - $product->price;
+            if ($delta >= - 200000 && $delta <= 200000) {
+                $data['suggess'][] = $product;
+            }
+        }
+        // var_dump($data['all']);
+        // var_dump($data['suggess']);
+         return $data;
     }
 }
 

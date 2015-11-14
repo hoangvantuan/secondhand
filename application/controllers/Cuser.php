@@ -31,8 +31,10 @@ class Cuser extends CI_Controller
             $password = $this->input->post('pass');
 
             if ($this->muser->checkLogin($username, $password)) {
+                $id = $this->muser->findId($username);
                 $user = array(
-                    'user' => $username
+                    'user' => $username,
+                    'id' => $id
                 );
                 $this->session->set_userdata($user);
                 redirect(base_url());
@@ -67,8 +69,10 @@ class Cuser extends CI_Controller
                     'password' => $password
                 );
                 $this->muser->insert($data);
+                $id  = $this->muser->findId($username);
                 $user = array(
-                    'user' => $username
+                    'user' => $username,
+                    'id' => $id
                 );
                 $this->session->set_userdata($user);
                 redirect(base_url());

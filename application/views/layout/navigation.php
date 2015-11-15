@@ -39,8 +39,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog">&nbsp;</i><strong><?php echo $user ?></strong><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo base_url("index.php/cuser/") ?>><i class="glyphicon glyphicon-user">&nbsp;</i>Profiles</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-sort  ">&nbsp;</i>My Trade</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-plus">&nbsp;</i>My Offer</a></li>
+                    <li><a href=<?php echo base_url("index.php/ctransaction/listTrade")?>><i class="glyphicon glyphicon-sort  ">&nbsp;</i>My Trade</a></li>
+                    <li><a href=<?php echo base_url("index.php/ctransaction/listOffer") ?>><i class="glyphicon glyphicon-plus">&nbsp;</i>My Offer</a></li>
                     <li><a href=<?php echo base_url("index.php/cproduct") ?>><i class="glyphicon glyphicon-th">&nbsp;</i>My product</a></li>
                     <li><a href=<?php echo base_url("index.php/cuser/logout") ?>><i class="glyphicon glyphicon-off">&nbsp;</i>Logout</a></li>
                 </ul>

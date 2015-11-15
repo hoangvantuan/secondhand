@@ -2,7 +2,7 @@
 <?php $this->load->view('layout/navigation'); ?>
 <!-- BEGIN CONTENT -->
 <div class="container">
-    <?php echo anchor('cproduct', 'Back'); ?>
+    <a href="javascript:goback()" title="">Back</a>
     <hr>
     <div class="panel panel-info">
         <div class="panel-heading">

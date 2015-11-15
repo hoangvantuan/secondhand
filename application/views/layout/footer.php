@@ -22,6 +22,11 @@
 <!-- END FOOTER -->
 <script src="<?php echo base_url('assets/js/jquery-1.11.3.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
+<script type="text/javascript">
+    function goback() {
+    history.back(-1)
+}
+</script>
 </body>
 <!-- END: BODY -->
 </html>

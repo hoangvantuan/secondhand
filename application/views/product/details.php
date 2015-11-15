@@ -7,8 +7,7 @@ $this->load->view('layout/navigation');
     <!-- Info of product and user -->
 
     <div class="col-md-6">
-         <?php
-echo anchor('cproduct', 'Back'); ?>
+     <a href="javascript:goback()" title="">Back</a>
         <!-- User info -->
         <div class="panel panel-info">
             <div class="panel-heading">

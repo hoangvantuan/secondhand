@@ -5,6 +5,7 @@
     <div class="row">
         <!-- B: Trade -->
         <div class="col-md-12">
+           <a href="javascript:goback()" title="">Back</a>
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="glyphicon glyphicon-refresh"></i>&nbsp;My Trade</h3>
@@ -25,9 +26,12 @@
                         <!-- Icon trade -->
                         <div class="trade-icon col-md-4 text-center">
                             <div>
-                                <a href="#">
-                                <img src='<?php echo base_url("assets/image/common/swap.png") ?>' alt="icon-trade" class="img-responsive text-center" height="50" width="50" >
+                                <a href="<?php echo base_url('index.php/ctransaction?action=swap&amp;srcId='.$srcProduct->id.'&amp;desId='.$desProduct->id) ?>" >
+                                <img src='<?php echo base_url("assets/image/common/swap.png") ?>' alt="icon-trade" class="img-responsive text-center" height="50" width="50" style="margin:0 auto;">
                                 </a>
+                                <br>
+                                <br>
+                                <p class="text-info"><?php echo $success ?></p>
                             </div>
                         </div>
                         <!-- right prroduct -->

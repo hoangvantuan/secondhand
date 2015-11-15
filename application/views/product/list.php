@@ -6,7 +6,9 @@
         <div class="container-fluid">
 			<div class="row">
                 <div class="col-lg-12">
+
                 	<h1 class="page-header">Product List</h1>
+                    <a href="javascript:goback()" title="">Back</a>
                     <ol class="breadcrumb">
                         <li>
                             <i class="fa fa-dashboard"></i><a href="<?php echo base_url('index.php/cproduct') ?>">Home</a>

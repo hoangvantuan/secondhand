@@ -32,8 +32,12 @@ class Mtransaction extends CI_Model
     }
 
     function checkTransaction($srcId, $desId) {
-        $query = $this->db->query("SELECT * FROM sh_transaction WHERE srcId = $srcId || desId = $desId");
-        return $query->num_rows();
+        $query = $this->db->query("SELECT * FROM sh_transaction WHERE srcId = $srcId && desId = $desId");
+        $sp = $query->row();
+        if($query->num_rows())
+            return $sp->id;
+        else return false;
+
     }
 }
 

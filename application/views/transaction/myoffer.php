@@ -6,7 +6,7 @@ $this->load->view('layout/navigation'); ?>
 <!-- BEGIN CONTENT -->
 <!-- BEGIN: Send Offer -->
 <div class="container">
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Send Offer</h3>
         </div>
@@ -16,8 +16,9 @@ $this->load->view('layout/navigation'); ?>
             <?php if($send != null) : ?>
             <?php foreach( $send as $tran): ?>
             <div class="row col-md-12">
+             <p>Status: <span class="text-info"><?php echo $tran['tran']->status ?></span></p>
                 <div class="panel panel-success">
-                    <?php echo isset($cancleSuccess) ? $cancleSuccess :'' ?>
+
                     <div class="panel-body">
                         <!-- Left product -->
                         <div class="offer-left col-md-4">
@@ -38,6 +39,10 @@ $this->load->view('layout/navigation'); ?>
                             <img src="<?php echo base_url("assets/image/common/swap.png") ?>" alt="icon-trade" class="img-responsive" style="margin:0 auto;" width="50" height="50">
                             <br>
                          <!-- delete Offer -->
+
+                            <?php if($tran['tran']->status == 'Refuse'):?>
+                            <a href="<?php echo base_url('index.php/ctransaction?action=swap&amp;srcId='.$tran['srcProduct']->id.'&amp;desId='.$tran['desProduct']->id)?>">Resend</a>
+                            <?php endif ?>
                             <a href="<?php echo base_url('index.php/ctransaction/cancleOffer?id='.$tran['id']) ?>">Cancle</a>
                         <!-- End delete offer -->
                         </div>
@@ -82,6 +87,7 @@ $this->load->view('layout/navigation'); ?>
             <!-- Begin : 1 Content -->
             <?php foreach ($receive as $tran): ?>
             <div class="row col-md-12">
+               <p>Status: <span class="text-info"><?php echo $tran['tran']->status ?></span></p>
                 <div class="panel panel-success">
                     <div class="panel-body">
                         <!-- Left product -->
@@ -104,9 +110,9 @@ $this->load->view('layout/navigation'); ?>
                             <br>
                         <!-- delete Offer -->
                         <div class="text-center">
-                            <a href="#" title="" class="">Accept</a>
+                            <a href="<?php echo base_url('index.php/ctransaction/acceptOffer?id='.$tran['tran']->id) ?>" title="" class="">Accept</a>
                             &nbsp;&nbsp;&nbsp;
-                            <a href="#" title="" class="">Refuse</a>
+                            <a href="<?php echo base_url('index.php/ctransaction/refuseOffer?id='.$tran['tran']->id) ?>" title="" class="">Refuse</a>
                         </div>
                         <!-- End delete offer -->
                         </div>

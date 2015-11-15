@@ -416,7 +416,8 @@ class DeleteMng implements CallFunction
         $this->that->mproduct->delete($idProduct);
         // echo $idProduct;
         $idTran = $this->that->mtransaction->findIdByProductId($idProduct);
-        var_dump($idTran);
+        // )
+        // if($idTran !=null)
         $this->that->mtransaction->delete($idTran->id);
         redirect('cproduct');
     }

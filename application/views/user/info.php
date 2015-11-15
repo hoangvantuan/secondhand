@@ -5,6 +5,7 @@
     <div class="row">
         <!-- BEGIN: right content -->
         <div class="col-md-12">
+         <a href="javascript:goback()" title="">Back</a>
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <!-- Title -->
@@ -17,12 +18,15 @@
                         <img src='<?php echo base_url($user->avatar) ?>' alt="avatar" class="img-responsive" width="100">
                     </div>
                     <!-- Right info: more about: name, day... -->
+                    <?php $user == null ? redirect(base_url()) : '' ?>
                     <div class="col-md-8">
                         <p><strong>User id: </strong><?php echo $user->id ?></p>
                         <p><strong>Account: </strong><?php echo $user->username ?></p>
                         <p><strong>Address: </strong><?php echo $user->address ?></p>
                         <p><strong>Phone</strong><?php echo $user->phonenumber ?></p>
+                        <?php if($user->id == $this->session->userdata('id')): ?>
                         <a href="#" data-toggle="modal" class="" data-target="#edit_user" title="">Edit</a>
+                        <?php endif ?>
                     </div>
                 </div>
                 <!-- End content -->

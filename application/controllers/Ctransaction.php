@@ -44,10 +44,15 @@ class Ctransaction extends CI_Controller {
             $send = null;
             // get receive offer
             $receiveTransaction = $this->mtransaction->findByDesUserId($userId);
+
             foreach ($receiveTransaction as $tran) {
+                if($tran->status == 'Waiting'){
                 $src = $this->mproduct->find($tran->srcId);
                 $des = $this->mproduct->find($tran->desId);
-                $receive[] = array('srcProduct'=>$src, 'desProduct'=>$des);
+                $from = $this->muser->findUsername($tran->srcUserId);
+                $to = $this->muser->findUsername($tran->desUserId);
+                $receive[] = array('srcProduct'=>$src, 'desProduct'=>$des, 'from'=>$from, 'to'=>$to, 'id'=>$tran->id);
+            }
             }
 
 
@@ -55,10 +60,13 @@ class Ctransaction extends CI_Controller {
             $sendTransaction = $this->mtransaction->findBySrcUserId($userId);
             foreach ($sendTransaction as $tran) {
                 // var_dump($tran);
+                if($tran->status == 'Waiting'){
                 $src = $this->mproduct->find($tran->srcId);
                 $des = $this->mproduct->find($tran->desId);
-
-                $send[] = array('srcProduct'=>$src, 'desProduct'=>$des);
+                $from = $this->muser->findUsername($tran->srcUserId);
+                $to = $this->muser->findUsername($tran->desUserId);
+                $send[] = array('srcProduct'=>$src, 'desProduct'=>$des, 'from'=>$from, 'to'=>$to, 'id'=>$tran->id);
+            }
             }
             $data['receive'] = $receive;
             $data['send'] = $send;
@@ -67,6 +75,19 @@ class Ctransaction extends CI_Controller {
         } else {
             redirect('cuser/login','refresh');
         }
+    }
+
+    public function cancleOffer(){
+           $data['cancleSuccess'] = null;
+        $idTran = $this->input->get('id');
+        $tran = $this->mtransaction->find($idTran);
+        if($tran->srcUserId != $this->session->userdata('id'))
+            redirect(base_url());
+       $this->mtransaction->delete($idTran);
+       $this->mproduct->update($tran->srcId,array ('status'=>'Ready'));
+       $this->mproduct->update($tran->desId,array ('status'=>'Ready'));
+       $data['cancleSuccess'] = "Cancle Offer successfull";
+       redirect('ctransaction/ListOffer');
     }
 
 }

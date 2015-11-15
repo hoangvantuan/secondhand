@@ -9,13 +9,13 @@ class MUser extends CI_Model {
 	function findUsername($id){
 		$this->db->where('id', $id);
 		$data = $this->db->get('sh_user')->row();
-		return $data['username'];
+        return $data->username;
 
-	}	
+	}
 	function find($id){
 		$this->db->where('id', $id);
 		return $this->db->get('sh_user')->row();
-		
+
 	}
 
 	function findId($username){
@@ -30,7 +30,7 @@ class MUser extends CI_Model {
 	function delete($id){
 		$this->db->where('id', $id);
 		$this->db->delete('sh_user');
-	} 
+	}
 	function update($id, $sh_user = array()){
 		$this->db->where('id', $id);
 		$this->db->update('sh_user', $sh_user);

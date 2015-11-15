@@ -6,10 +6,14 @@ class Cuser extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('user')) {
+        if ($this->session->userdata('user') || $this->input->get('id')) {
+            if($this->input->get('id') == '')
+            {
+             $data['user'] = $this->muser->find($this->session->userdata('id'));
+            } else {
 
-            $user_id = $this->muser->findId($this->session->userdata('user'));
-            $data['user'] = $this->muser->find($user_id);
+            $data['user'] = $this->muser->find($this->input->get('id'));
+            }
             $this->load->view('layout/header');
             $this->load->view('layout/navigation');
             $this->load->view('user/edit_modal');
@@ -95,6 +99,7 @@ class Cuser extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('user');
+        $this->session->unset_userdata('id');
         redirect(base_url());
     }
 }

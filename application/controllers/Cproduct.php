@@ -224,6 +224,7 @@ class DetailsMng
 
     public function getDataProduct() {
         $data['product'] = $this->that->mproduct->find($this->that->input->get('id'));
+        if($data['product'] == null) redirect(base_url());
         $data['user'] = $this->that->muser->find($data['product']->user_id);
         $category = $this->that->mcategory->find($data['product']->category_id);
         $data['product']->category_name = $category->name;

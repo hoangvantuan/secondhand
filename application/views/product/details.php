@@ -16,20 +16,13 @@ $this->load->view('layout/navigation');
             <div class="panel-body">
                 <!-- Left info : image, avatar -->
                 <div class="col-md-4">
-                    <img src="<?php
-echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive" width="100">
+                    <img src="<?php echo base_url($user->avatar) ?>" alt="avatar" class="img-responsive" width="100">
                 </div>
                 <!-- Right info: more about: name, day... -->
                 <div class="col-md-8">
-                    <p><strong>Account: </strong></a><?php
-echo $user->username
-?></p>
-                    <p><strong>Address: </strong><?php
-echo $user->address
-?></p>
-                    <p><strong>Phone number: </strong><?php
-echo $user->phonenumber
-?></p>
+                    <p><strong>Account: </strong><a href="<?php echo base_url('index.php/cuser/?id='.$user->id) ?>"><?php echo $user->username?></p></a>
+                    <p><strong>Address: </strong><?php echo $user->address?></p>
+                    <p><strong>Phone number: </strong><?php echo $user->phonenumber?></p>
                 </div>
             </div>
         </div>
@@ -99,7 +92,11 @@ echo $product->description
                  <?php endforeach ?>
                 </div>
             <?php else: ?>
-                <p class="text-warning">Không có sản phẩm nào</p>
+                <?php if($this->session->userdata('id')): ?>
+                <p class="text-warning">Dont have any product</p>
+                <?php else: ?>
+                <p class="text-warning">Login to change product</p>
+                <?php endif ?>
             <?php endif ?>
                 <!-- END: info of 1 product -->
             </div>
@@ -126,7 +123,11 @@ echo $product->description
                 </div>
 
             <?php else: ?>
-                 <p class="text-warning">Không có sản phẩm nào</p>
+                 <?php if($this->session->userdata('id')): ?>
+                <p class="text-warning">Dont have any product</p>
+                <?php else: ?>
+                <p class="text-warning">Login to change product</p>
+                <?php endif ?>
             <?php endif ?>
                 <!-- END: info of 1 product -->
             </div>

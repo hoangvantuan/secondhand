@@ -17,15 +17,17 @@ $this->load->view('layout/navigation'); ?>
             <?php foreach( $send as $tran): ?>
             <div class="row col-md-12">
                 <div class="panel panel-success">
+                    <?php echo isset($cancleSuccess) ? $cancleSuccess :'' ?>
                     <div class="panel-body">
                         <!-- Left product -->
                         <div class="offer-left col-md-4">
+                            <p>Form: <a href="<?php echo base_url('index.php/cuser?id='.$tran['srcProduct']->user_id) ?>"><?php echo $tran['from']  ?>(Me)</a></p>
                             <div class="thumbnail row">
                                 <div class="col-md-6">
                                      <a href="<?php echo base_url('index.php/cproduct/details?id='.$tran['srcProduct']->id) ?>"><img src="<?php echo base_url($tran['srcProduct']->image) ?>" alt="left-product" class="img-responsive offer-product"  ></a>
                                 </div>
                                 <div class="col-md-6 caption">
-                                    <p class="text-info"><?php echo $tran['srcProduct']->name ?></p>
+                                    <p class="text-success"><?php echo $tran['srcProduct']->name ?></p>
                                     <p class="text-info"><?php echo $tran['srcProduct']->description ?></p>
                                 </div>
                             </div>
@@ -36,18 +38,19 @@ $this->load->view('layout/navigation'); ?>
                             <img src="<?php echo base_url("assets/image/common/swap.png") ?>" alt="icon-trade" class="img-responsive" style="margin:0 auto;" width="50" height="50">
                             <br>
                          <!-- delete Offer -->
-                            <a href="#">Cancle</a>
+                            <a href="<?php echo base_url('index.php/ctransaction/cancleOffer?id='.$tran['id']) ?>">Cancle</a>
                         <!-- End delete offer -->
                         </div>
                         <!-- End icon  -->
                         <!-- right prroduct -->
                         <div class="offer-right col-md-4">
                              <div class="thumbnail row">
+                                <p>To: <a href="<?php echo base_url('index.php/cuser?id='.$tran['desProduct']->user_id) ?>"><?php echo $tran['to'] ?></a></p>
                                 <div class="col-md-6">
                                      <a href="<?php echo base_url('index.php/cproduct/details?id='.$tran['desProduct']->id) ?>"><img src="<?php echo base_url($tran['desProduct']->image) ?>" alt="left-product" class="img-responsive offer-product"  ></a>
                                 </div>
                                 <div class="col-md-6 caption">
-                                    <p class="text-info"><?php echo $tran['desProduct']->name ?></p>
+                                    <p class="text-success"><?php echo $tran['desProduct']->name ?></p>
                                     <p class="text-info"><?php echo $tran['desProduct']->description ?></p>
                                 </div>
                             </div>
@@ -59,7 +62,7 @@ $this->load->view('layout/navigation'); ?>
             </div>
             <?php endforeach ?>
              <?php else: ?>
-                <p class="text-warning">You dont send any offer</p>
+                <p class="text-danger">You dont send any offer</p>
             <?php endif ?>
             <!-- End 1 content -->
         </div>
@@ -83,10 +86,14 @@ $this->load->view('layout/navigation'); ?>
                     <div class="panel-body">
                         <!-- Left product -->
                         <div class="offer-left col-md-4">
-                            <div class="thumbnail">
-                                <img src="#" alt="left-product" class="img-responsive">
-                                <div class="caption">
-                                    <p>Source product</p>
+                        <p>Form: <a href="<?php echo base_url('index.php/cuser?id='.$tran['srcProduct']->user_id) ?>"><?php echo $tran['from'] ?></a></p>
+                           <div class="thumbnail row">
+                                <div class="col-md-6">
+                                     <a href="<?php echo base_url('index.php/cproduct/details?id='.$tran['srcProduct']->id) ?>"><img src="<?php echo base_url($tran['srcProduct']->image) ?>" alt="left-product" class="img-responsive offer-product"  ></a>
+                                </div>
+                                <div class="col-md-6 caption">
+                                    <p class="text-success"><?php echo $tran['srcProduct']->name ?></p>
+                                    <p class="text-info"><?php echo $tran['srcProduct']->description ?></p>
                                 </div>
                             </div>
                         </div>
@@ -106,10 +113,14 @@ $this->load->view('layout/navigation'); ?>
                         <!-- End icon  -->
                         <!-- right prroduct -->
                         <div class="offer-right col-md-4">
-                            <div class="thumbnail">
-                                <img src="#" alt="right-product" class="img-responsive">
-                                <div class="caption">
-                                    <p>Destination product</p>
+                           <div class="thumbnail row">
+                            <p>To: <a href="<?php echo base_url('index.php/cuser?id='.$tran['desProduct']->user_id) ?>"><?php echo $tran['to'] ?></a>(Me)</p>
+                                <div class="col-md-6">
+                                     <a href="<?php echo base_url('index.php/cproduct/details?id='.$tran['desProduct']->id) ?>"><img src="<?php echo base_url($tran['srcProduct']->image) ?>" alt="left-product" class="img-responsive offer-product"  ></a>
+                                </div>
+                                <div class="col-md-6 caption">
+                                    <p class="text-success"><?php echo $tran['desProduct']->name ?></p>
+                                    <p class="text-info"><?php echo $tran['desProduct']->description ?></p>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +131,7 @@ $this->load->view('layout/navigation'); ?>
             </div>
         <?php endforeach ?>
             <?php else: ?>
-                    <p class="text-warning">You dont receive any offer</p>
+                    <p class="text-danger">You dont receive any offer</p>
             <?php endif ?>
             <!-- End 1 content -->
         </div>

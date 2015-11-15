@@ -31,6 +31,10 @@ class Mtransaction extends CI_Model
         $this->db->update('sh_transaction', $sh_transaction);
     }
 
+    public function findIdByProductId($id){
+        $query = $this->db->query("SELECT id FROM sh_transaction WHERE srcId = $id || desId = $id");
+        return $query->row() ;
+    }
     function checkTransaction($srcId, $desId) {
         $query = $this->db->query("SELECT * FROM sh_transaction WHERE srcId = $srcId && desId = $desId");
         $sp = $query->row();

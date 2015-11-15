@@ -412,7 +412,12 @@ class DeleteMng implements CallFunction
     }
 
     public function excute() {
-        $this->that->mproduct->delete($this->getIdDelete());
+        $idProduct = $this->getIdDelete();
+        $this->that->mproduct->delete($idProduct);
+        // echo $idProduct;
+        $idTran = $this->that->mtransaction->findIdByProductId($idProduct);
+        var_dump($idTran);
+        $this->that->mtransaction->delete($idTran->id);
         redirect('cproduct');
     }
     public function getIdDelete() {

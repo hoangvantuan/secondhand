@@ -124,6 +124,45 @@ class Ctransaction extends CI_Controller {
 
  }
 
+ public function listTrade(){
+    if($this->session->userdata('id')){
+    $transaction = null;
+    //find all transaction which user send
+    $userId = $this->session->userdata('id');
+    $srcTran = $this->mtransaction->findBySrcUserId($userId);
+    foreach($srcTran as $tran) {
+        if($tran->status == 'Changed'){
+        $src = $this->mproduct->find($tran->srcId);
+        $des = $this->mproduct->find($tran->desId);
+        $srcUser = $this->muser->find($src->user_id);
+        $desUser = $this->muser->find($des->user_id);
+        $src->user = $srcUser;
+        $des->user = $desUser;
+        $transaction [] = array('srcProduct'=>$src, 'desProduct'=>$des);
+    }
+    }
+
+    // find receive
+    $desTran = $this->mtransaction->findByDesUserId($userId);
+    foreach($desTran as $tran) {
+        if($tran->status=='Changed'){
+        $src = $this->mproduct->find($tran->srcId);
+        $des = $this->mproduct->find($tran->desId);
+        $srcUser = $this->muser->find($src->user_id);
+        $desUser = $this->muser->find($des->user_id);
+        $src->user = $srcUser;
+        $des->user = $desUser;
+        $transaction[] = array('srcProduct'=>$src, 'desProduct'=>$des);
+    }
+    }
+    $data['transaction'] = $transaction;
+
+    $this->load->view('transaction/mytrade',$data);
+    } else {
+        redirect(base_url());
+    }
+ }
+
 }
 
 /* End of file Ctransaction.php */

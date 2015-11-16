@@ -14,3 +14,7 @@ div.left_side_bar ul li{
 .offer-product{
     height: 100px!important;
 }
+.home-product{
+    height: 300px!important;
+    overflow: hidden;
+}

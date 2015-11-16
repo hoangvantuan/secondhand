@@ -13,7 +13,7 @@
             <?php foreach($product as $value):?>
 
                 <div class="col-md-3">
-                    <div class="thumbnail">
+                    <div class="thumbnail home-product">
                         <a  href="<?php echo base_url('index.php/cproduct/details?id='.$value->id) ?>"><img src="<?php echo base_url($value->image) ?>" alt="product" class="img-responsive img-product"</a>                        <div class="caption">
                             <p><a href="<?php echo base_url('index.php/cproduct/details?id='.$value->id) ?>"><?php echo $value->name ?></a></p>
                             <p class="text-warning">Status: <?php echo  $value->status?></p>

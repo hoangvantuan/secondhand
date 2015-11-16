@@ -80,7 +80,7 @@ echo $product->description
                   <?php foreach($all as $productAll): ?>
                     <?php if($productAll->status != 'Changed' && $product->status != 'Changed' && $productAll->status != 'Waiting' && $product->status != 'Waiting'): ?>
                     <div class="col-md-4">
-                        <div class="thumbnail">
+                        <div class="thumbnail home-product">
                             <a href="<?php echo base_url('index.php/cproduct/details?id='.$productAll->id) ?>"><img src="<?php echo base_url($productAll->image) ?>" alt="product" class="img-responsive img-product"></a>
                             <div class="caption">
                                 <p><?php echo $productAll->description ?></p>
@@ -110,7 +110,7 @@ echo $product->description
                   <?php foreach($suggess as $productSucgess): ?>
                     <?php if($productSucgess->status != 'Changed' && $product->status != 'Changed' && $productSucgess->status != 'Waiting' && $product->status != 'Waiting' ): ?>
                     <div class="col-md-4">
-                        <div class="thumbnail">
+                        <div class="thumbnail home-product">
                             <img src="<?php echo base_url($productSucgess->image) ?>" alt="product" class="img-responsive img-product">
                             <div class="caption">
                                 <p><?php  echo $productSucgess->description ?></p>

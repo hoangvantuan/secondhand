@@ -18,6 +18,9 @@
         <ul class="nav navbar-nav">
             <!--Link to home page  -->
             <li ><a href="<?php echo base_url() ?>">Home</a></li>
+            <li ><a href="<?php echo base_url("index.php/ctransaction/listOffer") ?>">My Offer</a></li>
+            <li ><a href="<?php echo base_url("index.php/ctransaction/listTrade")?>">My Trade</a></li>
+            <li ><a href="<?php echo base_url("index.php/cproduct") ?>">My Product</a></li>
         </ul>
         <!-- BEGIN Form search of web -->
         <form class="navbar-form navbar-left" role="search">

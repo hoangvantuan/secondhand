@@ -7,10 +7,7 @@ class Chome extends CI_Controller
 
         $data['product'] = $this->mproduct->findAll();
         $data['category'] = $this->mcategory->findAll();
-        $this->load->view('layout/header');
-        $this->load->view('layout/navigation');
         $this->load->view('home/list', $data);
-        $this->load->view('layout/footer');
     }
 
     public function category($id) {
@@ -19,10 +16,7 @@ class Chome extends CI_Controller
         }
         else $data['product'] = $this->mproduct->findAll();
         $data['category'] = $this->mcategory->findAll();
-        $this->load->view('layout/header');
-        $this->load->view('layout/navigation');
         $this->load->view('home/list', $data);
-        $this->load->view('layout/footer');
     }
 }
 

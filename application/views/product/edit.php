@@ -22,12 +22,12 @@
                 </div>
                 <div class="form-group">
                     <!-- Enter Product name -->
-                    <label for="productName">Product name:</label>
+                    <label for="productName">Product name:<span class="text-danger">(*)</span></label>
                     <input type="text" name="name" value="<?php echo $product->name ?>" minlength="6" maxlength="25" placeholder="" required="required" class="form-control">
                 </div>
                 <div class="form-group">
                     <!-- Select category of product -->
-                    <label for="category">Category:</label><br>
+                    <label for="category">Category:<span class="text-danger">(*)</span></label><br>
                     <select name="category">
                         <?php foreach($category as $value): ?>
                         <option value="<?php echo $value->id?>" <?php echo $value->id == $product->category_id ? 'selected' : '' ?>><?php echo $value->name ?></option>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <!-- Price of product -->
-                    <label for="price">About price:</label><br>
+                    <label for="price">About price:<span class="text-danger">(*)</span></label><br>
                     <input type="number" min='0', name="price" required value="<?php echo $product->price ?>" placeholder="">
                 </div>
                 <div class="form-group">

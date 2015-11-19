@@ -86,7 +86,7 @@ class Cuser extends CI_Controller
                 );
                 $this->load->view('layout/header');
                 $this->load->view('layout/navigation');
-                $this->load->view('user/login', $data);
+                $this->load->view('user/register', $data);
                 $this->load->view('layout/footer');
             }
         } else {

@@ -10,6 +10,7 @@
                     <h3 class="panel-title">Sign up</h3>
                 </div>
                 <div class="panel-body">
+                 <?php echo !isset($error) ? "" :$error['error'] ?>
                     <form role="form" method="post" action="#">
                         <div class="form-group">
                             <label for="username" class="control-label">Account:</label>

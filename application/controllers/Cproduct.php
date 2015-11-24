@@ -171,7 +171,7 @@ class InsertMng implements CallFunction
 
             $imageProcess->setConfig($myConfig->getConfigUpload());
             if (!$imageProcess->getUpload()->upload(new uploadUserLib())) {
-                $data['error'] = $imageProcess->upload->getError();
+                $data['error'] = $imageProcess->getUpload()->getError();
             }
             else {
 
